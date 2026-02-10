@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SSG Next.js 블로그 프로젝트
 
-## Getting Started
+이 프로젝트는 Next.js의 SSG(Static Site Generation) 기능을 활용한 정적 블로그입니다.
 
-First, run the development server:
+## 🚀 시작하기
 
+### 1. 개발 서버 실행
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 정적 사이트 빌드 (SSG)
+Next.js 프로젝트를 정적 사이트로 빌드하려면 `next.config.ts`에 `output: 'export'` 설정이 필요합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
+빌드가 완료되면 `out` 폴더에 정적 HTML/CSS/JS 파일이 생성됩니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💡 SSG 빌드 팁
 
-## Learn More
+### 1. 정적 배포 설정 (Static Export)
+`next.config.ts` 파일을 다음과 같이 수정하여 정적 내보내기를 활성화할 수 있습니다:
+```typescript
+const nextConfig = {
+  output: 'export', // 정적 사이트 생성을 활성화
+  images: {
+    unoptimized: true, // 정적 호스팅(GitHub Pages 등)에서는 이미지 최적화 비활성화 필요
+  },
+};
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2. 경로 최적화
+- `generateStaticParams`를 사용하여 동적 경로(예: `[slug]`)를 빌드 타임에 미리 생성하세요.
+- 모든 링크는 `next/link`를 사용하여 클라이언트 사이드 탐색을 최적화하세요.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. SEO 설정
+- 각 페이지마다 `Metadata` API를 활용하여 `title`, `description`을 설정하면 검색 엔진 최적화에 유리합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. 배포
+- 생성된 `out` 폴더의 내용을 GitHub Pages, Vercel(Static), Netlify 등에 업로드하여 무료로 호스팅할 수 있습니다.

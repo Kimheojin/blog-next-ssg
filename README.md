@@ -1,41 +1,42 @@
-# SSG Next.js 블로그 프로젝트
+## 초기 정하면 편할만한거 
 
-이 프로젝트는 Next.js의 SSG(Static Site Generation) 기능을 활용한 정적 블로그입니다.
 
-## 🚀 시작하기
+- SEO 최적화 방법에 대해 생각해 보는 것도 좋을 거 같음
+  - 기존 CSR 블로그에서 옮기는 이유가 이거 때문이라
 
-### 1. 개발 서버 실행
-```bash
-npm run dev
-```
+- 되도록이면 rem 단위 사용하는 방식으로 한번 구현해 보기
+  - 
 
-### 2. 정적 사이트 빌드 (SSG)
-Next.js 프로젝트를 정적 사이트로 빌드하려면 `next.config.ts`에 `output: 'export'` 설정이 필요합니다.
+- 다크모드는 초기에 세팅하는 게 편한듯
+  - 초기에 다크모드 세팅해놓기
+  
+- 이미지는 git hub 에 avif 형식으로 지원하게 하면 되는 거 아닌가?
+  - 이미지 전용 repo 따로 파는 것도 방법일듯
 
-```bash
-npm run build
-```
-빌드가 완료되면 `out` 폴더에 정적 HTML/CSS/JS 파일이 생성됩니다.
 
-## 💡 SSG 빌드 팁
 
-### 1. 정적 배포 설정 (Static Export)
-`next.config.ts` 파일을 다음과 같이 수정하여 정적 내보내기를 활성화할 수 있습니다:
-```typescript
-const nextConfig = {
-  output: 'export', // 정적 사이트 생성을 활성화
-  images: {
-    unoptimized: true, // 정적 호스팅(GitHub Pages 등)에서는 이미지 최적화 비활성화 필요
-  },
-};
-```
+## 정해진거
+### 이미지 관리
 
-### 2. 경로 최적화
-- `generateStaticParams`를 사용하여 동적 경로(예: `[slug]`)를 빌드 타임에 미리 생성하세요.
-- 모든 링크는 `next/link`를 사용하여 클라이언트 사이드 탐색을 최적화하세요.
+- git hub 새 repo 를 이미지 전용으로 설정하기
+  - jsDelivr -> 무료 CDN 기술이라고 함
+  - 파일 형식은 avif, webP 중에 하나로 설정한 다음에 하면될듯
 
-### 3. SEO 설정
-- 각 페이지마다 `Metadata` API를 활용하여 `title`, `description`을 설정하면 검색 엔진 최적화에 유리합니다.
+### 다크모드, 라이트 모드
 
-### 4. 배포
-- 생성된 `out` 폴더의 내용을 GitHub Pages, Vercel(Static), Netlify 등에 업로드하여 무료로 호스팅할 수 있습니다.
+- 미리 생각하면 서 하는 게 편할 듯
+
+### SEO 최적화 관련
+
+- SEO 
+
+### 마크다운 변환 관련
+
+
+
+### 코드블럭 관련
+
+- 코드블럭 따로 정하고 하는 게 더 이쁘고 좋을 듯
+
+### 경로 관련
+

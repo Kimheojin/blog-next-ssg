@@ -1,3 +1,4 @@
+/* 불필요한 패딩 같은거 초기화도 여기서 하는 듯*/
 @import "tailwindcss";
 
 @layer base {

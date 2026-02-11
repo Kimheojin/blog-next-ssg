@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="space-y-12">
       <section className="py-12 border-b">
-        <h1 className="text-4xl font-bold mb-4">안녕하세요! 👋</h1>
+        <h1 className="text-4xl font-bold mb-4">안녕하세요!</h1>
         <p className="text-xl opacity-70">
           Next.js SSG로 만든 저의 개인 블로그입니다. 이곳에 생각과 기록을 담을 예정입니다.
         </p>

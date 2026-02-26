@@ -1,21 +1,34 @@
-export default function Home() {
-  return (
-    <div className="space-y-12">
-      <section className="py-12 border-b">
-        <h1 className="text-4xl font-bold mb-4">안녕하세요!</h1>
-        <p className="text-xl opacity-70">
-          Next.js SSG로 만든 저의 개인 블로그입니다. 이곳에 생각과 기록을 담을 예정입니다.
-        </p>
-      </section>
+import { getSortedPostsData } from "@/lib/posts";
+import Link from "next/link";
 
+export default function Home() {
+  const allPostsData = getSortedPostsData();
+
+  return (
+    <div className="max-w-3xl mx-auto px-6 space-y-12">
       <section>
-        <h2 className="text-2xl font-semibold mb-6">최근 포스트</h2>
+        <h2 className="text-2xl font-bold mb-8 tracking-tight">Recent Articles</h2>
         <div className="grid gap-6">
-          <div className="p-6 border rounded-lg hover:opacity-70 transition-opacity cursor-pointer">
-            <h3 className="text-xl font-medium mb-2">첫 번째 포스트 준비 중...</h3>
-            <p className="opacity-50">곧 유익한 내용으로 찾아뵙겠습니다.</p>
-            <span className="text-sm opacity-40 mt-4 block">2026. 02. 10</span>
-          </div>
+          {allPostsData.map(({ slug, date, title, category }) => (
+            <Link 
+              href={`/posts/${slug.join('/')}`} 
+              key={slug.join('/')}
+              className="group block p-8 border rounded-2xl hover:border-black dark:hover:border-white transition-all bg-neutral-50/50 dark:bg-neutral-900/50"
+            >
+              <div className="flex justify-between items-start mb-3">
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                  {category}
+                </span>
+                <span className="text-xs text-neutral-400 font-mono">{date}</span>
+              </div>
+              <h3 className="text-xl font-bold group-hover:translate-x-1 transition-transform">
+                {title}
+              </h3>
+              <p className="mt-4 text-sm text-neutral-500 flex items-center">
+                Read article <span className="ml-2 group-hover:translate-x-1 transition-transform">&rarr;</span>
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
     </div>

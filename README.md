@@ -67,3 +67,26 @@ date: "2026-02-26"
 
 ### 경로 관련
 
+---
+
+## 🚀 배포 가이드 (GitHub Pages)
+
+이 프로젝트는 `out` 디렉토리의 정적 파일들을 별도의 배포 전용 저장소(`HeoJin1109.github.io`)로 푸시하여 배포하도록 설정되어 있습니다.
+
+### 배포 전 필수 확인
+- `public/.nojekyll` 파일이 존재해야 합니다. (GitHub Pages의 Jekyll 무시 설정 방지)
+- `next.config.ts`의 `output: "export"`와 `trailingSlash: true` 설정이 되어 있어야 합니다.
+
+### 배포 명령어
+아래 명령어를 통해 빌드와 배포를 한 번에 진행할 수 있습니다.
+
+```bash
+# 1. 최신 코드로 정적 파일 생성 (out 폴더 생성)
+npm run build
+
+# 2. out 폴더의 내용을 지정된 배포용 repo의 main 브랜치로 푸시
+npm run deploy
+```
+
+> **참고:** `npm run deploy` 실행 시 GitHub 인증을 요구할 수 있습니다. 이 명령어는 `gh-pages` 패키지를 사용하여 `out` 폴더 내의 파일들만 배포용 저장소의 `main` 브랜치로 깔끔하게 전송합니다.
+

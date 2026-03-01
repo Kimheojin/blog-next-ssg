@@ -7,4 +7,4 @@ category: "daily"
 # 독서 노트: 클린 코드
 
 좋은 코드란 무엇일까에 대해 깊이 고민해보는 시간이었습니다.
-Sunt in culpa qui officia deserunt mollit anim id est laborum.
+

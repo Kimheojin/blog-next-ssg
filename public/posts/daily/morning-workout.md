@@ -7,4 +7,4 @@ category: "daily"
 # 아침 운동의 기록
 
 꾸준함이 최고의 덕목입니다. 오늘도 만보 걷기를 완료했습니다.
-Excepteur sint occaecat cupidatat non proident.
+

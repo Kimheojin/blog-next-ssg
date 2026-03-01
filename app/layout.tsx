@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "My SSG Blog",
-  description: "Next.js로 만든 정적 블로그",
+  title: "허지 블로그",
+  description: "개발 블로그",
 };
 
 export default function RootLayout({
@@ -24,13 +13,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans`}
-      >
+      <body className="font-sans">
         <div className="flex flex-col min-h-screen">
           <header className="w-full max-w-3xl mx-auto px-6 py-12 flex justify-between items-center">
             <a href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
-              SSG Blog
+              허진 블로그
             </a>
             <nav className="flex space-x-6">
               <a href="/" className="text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-100">Home</a>
@@ -46,7 +33,7 @@ export default function RootLayout({
           <footer className="w-full max-w-3xl mx-auto px-6 py-16 mt-20 border-t border-neutral-100 dark:border-neutral-900">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-neutral-400">
-                © 2026 My SSG Blog.
+                © 2026 
               </p>
               <p className="text-xs text-neutral-400 uppercase tracking-widest">
                 Powered by Next.js

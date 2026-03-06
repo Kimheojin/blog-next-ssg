@@ -17,17 +17,17 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
     <div className="max-w-3xl mx-auto px-6 relative">
       <article className="w-full min-w-0">
         <header className="mb-12">
-          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-neutral-400 mb-6">
-            <Link href="/" className="hover:text-black dark:hover:text-white transition-colors">Home</Link>
+          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6">
+            <Link href="/" className="hover:text-heading transition-colors">Home</Link>
             <span>/</span>
-            <Link href={`/category/${postData.category}`} className="hover:text-black dark:hover:text-white transition-colors">
+            <Link href={`/category/${postData.category}`} className="hover:text-heading transition-colors">
               {postData.category}
             </Link>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1]">
             {postData.title}
           </h1>
-          <time className="text-sm text-neutral-400 font-mono italic">{postData.date}</time>
+          <time className="text-sm text-muted-foreground font-mono italic">{postData.date}</time>
         </header>
 
         <div 
@@ -39,8 +39,8 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
           dangerouslySetInnerHTML={{ __html: postData.contentHtml || '' }} 
         />
 
-        <footer className="mt-24 pt-10 border-t border-neutral-100 dark:border-neutral-900">
-          <Link href="/" className="text-sm font-bold text-neutral-400 hover:text-black dark:hover:text-white transition-colors flex items-center">
+        <footer className="mt-24 pt-10 border-t border-[var(--border)]">
+          <Link href="/" className="text-sm font-bold text-muted-foreground hover:text-heading transition-colors flex items-center">
             <span className="mr-2">←</span> Back to Overview
           </Link>
         </footer>
@@ -50,7 +50,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
       {hasHeadings && (
         <aside className="hidden xl:block absolute left-full top-0 h-full">
           <div className="sticky top-24 ml-12 w-64">
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-300 dark:text-neutral-700 mb-6">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground opacity-50 mb-6">
               On this page
             </h2>
             <nav className="flex flex-col space-y-4">
@@ -58,10 +58,10 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
                 <a
                   key={heading.id}
                   href={`#${heading.id}`}
-                  className={`text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug ${
+                  className={`text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug hover:text-heading ${
                     heading.level === 3 
-                      ? "pl-4 text-neutral-400 font-normal hover:text-black dark:hover:text-white" 
-                      : "text-neutral-500 font-bold hover:text-black dark:hover:text-white"
+                      ? "pl-4 text-muted-foreground font-normal" 
+                      : "text-muted font-bold"
                   }`}
                 >
                   {heading.text}

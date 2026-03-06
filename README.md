@@ -95,3 +95,8 @@ npm run deploy
 - **`npm run deploy`**는 로컬에 생성된 `out` 디렉토리의 내용들을 실제 웹사이트가 호스팅되는 `HeoJin1109.github.io` 저장소의 `main` 브랜치로 **전송(Push)**하는 과정입니다.
 - **결론:** 웹사이트에 최신 내용을 반영하려면 반드시 **`npm run build` 실행 후 `npm run deploy`를 이어서 실행**해야 합니다.
 
+---
+이미지 webp 사용하는 게 더 좋을듯
+
+- 구글 서치엔진 친화적으로 만드는 게 중요할듯
+- 

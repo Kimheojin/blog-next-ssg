@@ -16,7 +16,7 @@ export default function CategoryPage() {
     <div className="max-w-3xl mx-auto px-6 space-y-12">
       <header>
         <h1 className="text-3xl font-bold mb-4 tracking-tight">Categories</h1>
-        <p className="text-neutral-500">관심 있는 주제를 선택해 주세요.</p>
+        <p className="text-muted">관심 있는 주제를 선택해 주세요.</p>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -24,12 +24,12 @@ export default function CategoryPage() {
           <Link 
             key={category}
             href={`/category/${category}`}
-            className="group p-8 border rounded-2xl hover:border-black dark:hover:border-white transition-all flex justify-between items-center bg-neutral-50/50 dark:bg-neutral-900/50"
+            className="group p-8 rounded-2xl transition-all flex justify-between items-center card-base"
           >
             <span className="text-lg font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
               {category}
             </span>
-            <span className="text-sm font-mono opacity-30">
+            <span className="text-sm font-mono text-muted-foreground opacity-50">
               {categoryCounts[category]}
             </span>
           </Link>

@@ -10,7 +10,7 @@ export default async function AboutPage() {
       <div className="w-full min-w-0">
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">{aboutData.title}</h1>
-          <time className="text-sm text-neutral-400">Last updated: {aboutData.date}</time>
+          <time className="text-sm text-muted-foreground">Last updated: {aboutData.date}</time>
         </header>
 
         <div 
@@ -23,7 +23,7 @@ export default async function AboutPage() {
       {hasHeadings && (
         <aside className="hidden xl:block absolute left-full top-0 h-full">
           <div className="sticky top-24 ml-12 w-64">
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-300 dark:text-neutral-700 mb-6">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground opacity-50 mb-6">
               On this page
             </h2>
             <nav className="space-y-4">
@@ -31,10 +31,10 @@ export default async function AboutPage() {
                 <a
                   key={heading.id}
                   href={`#${heading.id}`}
-                  className={`block text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug ${
+                  className={`block text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug hover:text-heading ${
                     heading.level === 3 
-                      ? "pl-4 text-neutral-400 font-normal hover:text-black dark:hover:text-white" 
-                      : "text-neutral-500 font-bold hover:text-black dark:hover:text-white"
+                      ? "pl-4 text-muted-foreground font-normal" 
+                      : "text-muted font-bold"
                   }`}
                 >
                   {heading.text}

@@ -30,7 +30,7 @@ export function ScrollToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-24 right-6 p-3 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-lg hover:scale-110 active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary z-50 ${
+      className={`fixed bottom-24 right-6 p-3 rounded-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 shadow-lg cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:scale-110 hover:shadow-xl active:scale-95 transition-all outline-none focus-visible:ring-2 focus-visible:ring-primary z-50 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       aria-label="Scroll to top"

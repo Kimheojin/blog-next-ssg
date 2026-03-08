@@ -13,7 +13,7 @@ export default function Home() {
             <Link 
               href={`/posts/${slug.join('/')}`} 
               key={slug.join('/')}
-              className="group block p-8 rounded-2xl card-base"
+              className="group block p-6 rounded-2xl card-base"
             >
               <div className="flex justify-between items-start mb-3">
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
@@ -24,9 +24,6 @@ export default function Home() {
               <h3 className="text-xl font-bold group-hover:translate-x-1 transition-transform">
                 {title}
               </h3>
-              <p className="mt-4 text-sm text-muted flex items-center">
-                Read article <span className="ml-2 group-hover:translate-x-1 transition-transform">&rarr;</span>
-              </p>
             </Link>
           ))}
         </div>

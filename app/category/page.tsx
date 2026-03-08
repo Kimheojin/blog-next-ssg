@@ -24,13 +24,13 @@ export default function CategoryPage() {
           <Link 
             key={category}
             href={`/category/${category}`}
-            className="group p-8 rounded-2xl transition-all flex justify-between items-center card-base"
+            className="group p-6 rounded-2xl flex justify-between items-center card-base"
           >
-            <span className="text-lg font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+            <span className="text-lg font-bold uppercase tracking-wider text-heading">
               {category}
             </span>
-            <span className="text-sm font-mono text-muted-foreground opacity-50">
-              {categoryCounts[category]}
+            <span className="inline-flex items-center justify-center px-3 py-1 text-xs font-mono font-bold bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-lg">
+              {String(categoryCounts[category]).padStart(2, '0')}
             </span>
           </Link>
         ))}

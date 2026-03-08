@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'highlight.js/styles/github-dark.css'; 
+import 'katex/dist/katex.min.css'; // 수학 공식 스타일 추가
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -16,6 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <head>
+        <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet" />
+      </head>
       <body className="font-sans" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"

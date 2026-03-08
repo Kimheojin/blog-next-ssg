@@ -5,7 +5,11 @@ import { remark } from 'remark';
 import remarkRehype from 'remark-rehype';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
-import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
 import GithubSlugger from 'github-slugger';
 
 const postsDirectory = path.join(process.cwd(), 'public/posts');
@@ -53,7 +57,6 @@ function extractHeadings(content: string): Heading[] {
     if (match) {
       const level = match[0].trim().length;
       const text = line.replace(/^#+ /, '').trim();
-      // github-slugger를 사용하여 rehype-slug와 동일한 ID 생성
       const id = slugger.slug(text);
       
       if (text) {
@@ -99,8 +102,13 @@ export async function getMarkdownFileData(fileName: string): Promise<PostData> {
   
   const headings = extractHeadings(content);
   const processedContent = await remark()
-    .use(remarkRehype)
+    .use(remarkGfm)
+    .use(remarkMath) // 수학식 파싱 ($...$, $$...$$)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeSlug)
+    .use(rehypeKatex) // 수학식 렌더링
+    .use(rehypeHighlight)
     .use(rehypeStringify)
     .process(content);
   const contentHtml = processedContent.toString();
@@ -123,8 +131,13 @@ export async function getPostData(slug: string[]): Promise<PostData> {
 
   const headings = extractHeadings(content);
   const processedContent = await remark()
-    .use(remarkRehype)
+    .use(remarkGfm)
+    .use(remarkMath) // 수학식 파싱
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeSlug)
+    .use(rehypeKatex) // 수학식 렌더링
+    .use(rehypeHighlight)
     .use(rehypeStringify)
     .process(content);
   const contentHtml = processedContent.toString();

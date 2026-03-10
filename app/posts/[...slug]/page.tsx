@@ -1,11 +1,26 @@
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
   return posts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPostData(slug);
+  const path = `/posts/${slug.join('/')}`;
+  
+  return {
+    title: `${post.title} | 허진 블로그`,
+    description: post.title,
+    alternates: {
+      canonical: path,
+    },
+  };
 }
 
 export default async function PostPage({ params }: { params: { slug: string[] } }) {

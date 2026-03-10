@@ -7,8 +7,12 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://heojin1109.github.io"),
   title: "허진 블로그",
   description: "개발 블로그",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

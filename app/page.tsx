@@ -5,7 +5,7 @@ export default function Home() {
   const allPostsData = getSortedPostsData();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 space-y-12">
+    <div className="space-y-12">
       <section>
         <h2 className="text-2xl font-bold mb-8 tracking-tight">Recent Articles</h2>
         <div className="grid gap-6">

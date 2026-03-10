@@ -6,7 +6,7 @@ export default async function AboutPage() {
   const hasHeadings = aboutData.headings && aboutData.headings.length > 0;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 relative">
+    <div>
       <div className="w-full min-w-0">
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-4 tracking-tight">{aboutData.title}</h1>

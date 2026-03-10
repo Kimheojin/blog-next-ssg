@@ -14,7 +14,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
   const hasHeadings = postData.headings && postData.headings.length > 0;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 relative">
+    <div>
       <article className="w-full min-w-0">
         <header className="mb-12">
           <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6">

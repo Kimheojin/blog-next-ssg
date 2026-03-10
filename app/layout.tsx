@@ -40,7 +40,7 @@ export default function RootLayout({
               </nav>
             </header>
             
-            <main className="flex-grow w-full">
+            <main className="flex-grow w-full max-w-3xl mx-auto px-6 relative">
               {children}
             </main>
 

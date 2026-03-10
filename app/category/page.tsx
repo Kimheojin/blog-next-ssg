@@ -13,7 +13,7 @@ export default function CategoryPage() {
   const categoryNames = Object.keys(categoryCounts).sort();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 space-y-12">
+    <div className="space-y-12">
       <header>
         <h1 className="text-3xl font-bold mb-4 tracking-tight">Categories</h1>
         <p className="text-muted">관심 있는 주제를 선택해 주세요.</p>

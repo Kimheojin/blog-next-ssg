@@ -16,7 +16,7 @@ export default async function CategoryDetailPage({ params }: { params: { categor
   const filteredPosts = allPosts.filter(post => post.category === category);
 
   return (
-    <div className="max-w-3xl mx-auto px-6 space-y-12">
+    <div className="space-y-12">
       <header className="flex items-baseline space-x-4">
         <h1 className="text-3xl font-bold uppercase tracking-tight">{category}</h1>
         <span className="text-lg text-muted-foreground font-mono">({filteredPosts.length})</span>

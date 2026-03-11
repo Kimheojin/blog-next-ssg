@@ -21,7 +21,7 @@ export function Pagination({ totalItems, itemsPerPage, currentPage }: Pagination
     router.push(`?${params.toString()}`, { scroll: true });
   };
 
-  const buttonBaseClass = "px-4 py-2 text-sm font-bold rounded-xl transition-all border-2 border-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white disabled:opacity-30 disabled:cursor-not-allowed text-neutral-400 dark:text-neutral-600";
+  const buttonBaseClass = "px-4 py-2 text-sm font-bold rounded-xl transition-all border-2 border-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer text-neutral-400 dark:text-neutral-600";
 
   return (
     <nav className="flex justify-center items-center space-x-2 mt-16">
@@ -43,7 +43,7 @@ export function Pagination({ totalItems, itemsPerPage, currentPage }: Pagination
                 ? { borderColor: 'var(--heading, black)', color: 'var(--heading, black)' } 
                 : {}
             }
-            className={`w-10 h-10 text-sm font-black rounded-xl transition-all border-2 ${
+            className={`w-10 h-10 text-sm font-black rounded-xl transition-all border-2 cursor-pointer ${
               currentPage === page
                 ? 'z-10'
                 : 'border-transparent text-neutral-400 dark:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white'

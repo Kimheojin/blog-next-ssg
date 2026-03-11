@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
-import 'highlight.js/styles/github-dark.css'; 
 import 'katex/dist/katex.min.css'; // 수학 공식 스타일 추가
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -34,13 +34,13 @@ export default function RootLayout({
         >
           <div className="flex flex-col min-h-screen">
             <header className="w-full max-w-3xl mx-auto px-6 py-12 flex justify-between items-center">
-              <a href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
+              <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
                 허진 블로그
-              </a>
+              </Link>
               <nav className="flex space-x-6">
-                <a href="/" className="text-sm font-medium text-muted hover:text-heading transition-colors">Home</a>
-                <a href="/category" className="text-sm font-medium text-muted hover:text-heading transition-colors">Category</a>
-                <a href="/about" className="text-sm font-medium text-muted hover:text-heading transition-colors">About</a>
+                <Link href="/" className="text-sm font-medium text-muted hover:text-heading transition-colors">Home</Link>
+                <Link href="/category" className="text-sm font-medium text-muted hover:text-heading transition-colors">Category</Link>
+                <Link href="/about" className="text-sm font-medium text-muted hover:text-heading transition-colors">About</Link>
               </nav>
             </header>
             

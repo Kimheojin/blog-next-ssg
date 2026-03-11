@@ -65,7 +65,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
       {hasHeadings && (
         <aside className="hidden xl:block absolute left-full top-0 h-full">
           <div className="sticky top-24 ml-12 w-64">
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground opacity-50 mb-6">
+            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-6">
               On this page
             </h2>
             <nav className="flex flex-col space-y-4">
@@ -75,8 +75,8 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
                   href={`#${heading.id}`}
                   className={`text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug hover:text-heading ${
                     heading.level === 3 
-                      ? "pl-4 text-muted-foreground font-normal" 
-                      : "text-muted font-bold"
+                      ? "pl-4 text-muted-foreground dark:text-muted-foreground/50 font-normal" 
+                      : "text-muted dark:text-muted/50 font-bold"
                   }`}
                 >
                   {heading.text}

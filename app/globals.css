@@ -116,35 +116,28 @@
 /* Prose 스타일 (강제 적용 버전) */
 @layer components {
   .prose {
-    /* 공통 변수 (라이트/다크 자동 대응) */
     --tw-prose-body: var(--foreground);
     --tw-prose-headings: var(--heading);
     --tw-prose-links: var(--primary);
-    --tw-prose-bold: var(--heading);
-    --tw-prose-counters: var(--muted);
-    --tw-prose-bullets: #adb5bd;
+    --tw-prose-bold: #000000;
     --tw-prose-hr: var(--border);
     --tw-prose-quotes: var(--foreground);
-    --tw-prose-quote-borders: var(--primary);
-    --tw-prose-captions: var(--muted-foreground);
     --tw-prose-code: var(--heading);
-    --tw-prose-pre-code: #f1f3f5;
-    --tw-prose-pre-bg: #111113;
-    --tw-prose-th-borders: var(--border);
-    --tw-prose-td-borders: var(--border);
     
     max-width: none;
     font-size: 1.05rem;
   }
 
-  /* Prose 내부 요소 가독성 강제 고정 */
-  .prose h1, .prose h2 {
-    font-family: 'NanumSquareRoundEB', sans-serif !important;
-    color: var(--heading) !important;
+  .prose strong {
+    color: #000000 !important;
+    font-weight: 700 !important;
   }
-  
-  .prose h3, .prose h4 {
-    font-family: 'NanumSquareRoundB', sans-serif !important;
+
+  :root.dark .prose strong {
+    color: #ffffff !important;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4 {
     color: var(--heading) !important;
   }
   
@@ -152,28 +145,134 @@
     color: var(--foreground) !important;
   }
 
-  .prose strong {
-    color: var(--heading) !important;
+  /* Rehype Pretty Code 스타일 */
+  [data-rehype-pretty-code-figure] {
+    @apply my-8 relative;
   }
 
-  .prose code {
-    @apply bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-sm font-mono;
-    color: var(--heading) !important;
+  [data-rehype-pretty-code-figure]::before {
+    content: none !important;
+    display: none !important;
   }
 
+  /* 코드 블록 전체 컨테이너 */
   .prose pre {
-    @apply rounded-2xl border border-neutral-200 dark:border-neutral-800 my-8 overflow-x-auto;
-    background-color: var(--card) !important;
+    background-color: #2d2d30 !important;
+    @apply rounded-xl border border-neutral-200 dark:border-neutral-800 overflow-x-auto pt-8 pb-4 my-8;
+    box-shadow: none !important;
   }
 
+  /* 코드 스타일 및 줄 번호 정렬 */
   .prose pre code {
-    @apply bg-transparent p-0 text-inherit;
     background-color: transparent !important;
+    display: grid !important;
+    min-width: 100% !important;
+    padding: 0 !important;
+    counter-reset: line;
+    @apply text-[13.5px] leading-relaxed font-mono;
+  }
+
+  /* 개별 줄 스타일 */
+  .prose pre [data-line] {
+    @apply pl-3 pr-4 border-l-2 border-transparent;
+    display: inline-block;
+    width: 100%;
+  }
+
+  /* 줄 번호 표시 */
+  .prose pre [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 1rem;
+    margin-right: 1rem;
+    text-align: right;
+    color: #888888;
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+
+  /* 언어 표시 레이블 */
+  [data-rehype-pretty-code-figure] [data-rehype-pretty-code-title] {
+    @apply absolute top-3 right-5 text-[10px] font-bold uppercase tracking-widest text-neutral-500 opacity-70 z-10;
+  }
+
+  [data-rehype-pretty-code-figure]:not(:has([data-rehype-pretty-code-title]))::after {
+    content: attr(data-language);
+    @apply absolute top-3 right-5 text-[10px] font-bold uppercase tracking-widest text-neutral-500 opacity-70;
+  }
+
+  /* 줄 강조 (Highlight Lines) */
+  .prose pre [data-highlighted-line] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: var(--primary) !important;
+  }
+
+  /* 단어 강조 (Highlight Words) */
+  .prose pre [data-highlighted-chars] {
+    @apply bg-neutral-700/50 rounded-sm px-0.5;
+  }
+
+  /* 인라인 코드(백틱) */
+  .prose code:not(pre code) {
+    background-color: #f3f4f6 !important;
+    color: #d63384 !important;
+    @apply px-1.5 py-0.5 rounded-md font-mono text-[0.875em] font-semibold transition-colors mx-0.5;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  .prose code:not(pre code)::before,
+  .prose code:not(pre code)::after {
+    content: none !important;
+  }
+
+  :root.dark .prose code:not(pre code) {
+    background-color: #2e2e32 !important;
+    color: #fca5a5 !important;
+    border: 1px solid #3f3f46 !important;
+  }
+
+  /* 체크박스 스타일 */
+  .prose li > input[type="checkbox"] {
+    @apply mr-2 align-middle;
+    width: 1rem !important;
+    height: 1rem !important;
+    accent-color: var(--primary) !important;
   }
 
   /* 다크 모드 특화 보정 */
   .dark .prose {
     --tw-prose-pre-bg: #111113;
     --tw-prose-hr: #343a40;
+    --tw-prose-th-borders: #3f3f46;
+    --tw-prose-td-borders: #3f3f46;
   }
+}
+
+/* --- 라이트 모드 가독성 패치 (가장 강력한 수단) --- */
+:root:not(.dark) .prose {
+  color: #000000 !important;
+}
+
+/* 리스트 번호 및 텍스트를 모두 검정색으로 강제 */
+:root:not(.dark) .prose p,
+:root:not(.dark) .prose li,
+:root:not(.dark) .prose table,
+:root:not(.dark) .prose table th,
+:root:not(.dark) .prose table td,
+:root:not(.dark) .prose strong {
+  color: #000000 !important;
+}
+
+/* 테이블 헤더(첫 줄) 가독성 추가 보정 */
+:root:not(.dark) .prose table th {
+  font-weight: 800 !important;
+  background-color: rgba(0, 0, 0, 0.03) !important; /* 미세한 배경색으로 헤더 구분 */
+}
+
+/* 마커(1., 2.) 스타일 강제 적용 */
+:root:not(.dark) .prose ol > li::marker,
+:root:not(.dark) .prose ul > li::marker {
+  color: #000000 !important;
+  font-weight: 800 !important; /* 더 굵게 */
 }

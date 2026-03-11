@@ -1,5 +1,4 @@
 import { getMarkdownFileData } from "@/lib/posts";
-import Link from "next/link";
 
 export default async function AboutPage() {
   const aboutData = await getMarkdownFileData("public/about.md");

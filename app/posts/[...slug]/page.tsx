@@ -54,9 +54,12 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
           dangerouslySetInnerHTML={{ __html: postData.contentHtml || '' }} 
         />
 
-        <footer className="mt-24 pt-10 border-t border-[var(--border)]">
-          <Link href="/" className="text-sm font-bold text-muted-foreground hover:text-heading transition-colors flex items-center">
-            <span className="mr-2">←</span> Back to Overview
+        <footer className="mt-24 pt-10 border-t border-[var(--border)] flex justify-between items-center">
+          <Link href={`/category/${postData.category}`} className="text-base font-bold text-muted-foreground hover:text-heading transition-colors flex items-center group">
+            <span className="mr-2 transition-transform group-hover:-translate-x-1">←</span> {postData.category} 목록
+          </Link>
+          <Link href="/" className="text-base font-bold text-muted-foreground hover:text-heading transition-colors flex items-center group">
+            전체 글 보기 <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </footer>
       </article>

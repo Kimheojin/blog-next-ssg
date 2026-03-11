@@ -1,5 +1,6 @@
 import { getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
+import { PaginatedPostList } from "@/components/PaginatedPostList";
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
@@ -12,7 +13,6 @@ export async function generateStaticParams() {
 export default async function CategoryDetailPage({ params }: { params: { category: string } }) {
   const { category } = await params;
   const allPosts = getSortedPostsData();
-  
   const filteredPosts = allPosts.filter(post => post.category === category);
 
   return (
@@ -22,29 +22,11 @@ export default async function CategoryDetailPage({ params }: { params: { categor
         <span className="text-lg text-muted-foreground font-mono">({filteredPosts.length})</span>
       </header>
 
-      <div className="grid gap-6">
-        {filteredPosts.map(({ slug, date, title }) => (
-          <Link 
-            href={`/posts/${slug.join('/')}`} 
-            key={slug.join('/')}
-            className="group block p-6 rounded-2xl transition-all card-base"
-          >
-            <div className="flex justify-between items-start mb-3">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                {category}
-              </span>
-              <span className="text-xs text-muted-foreground font-mono">{date}</span>
-            </div>
-            <h3 className="text-xl font-bold group-hover:translate-x-1 transition-transform">
-              {title}
-            </h3>
-          </Link>
-        ))}
-      </div>
+      <PaginatedPostList posts={filteredPosts} />
 
-      <footer className="pt-8">
-        <Link href="/category" className="text-sm font-bold text-muted-foreground hover:text-heading transition-colors">
-          &larr; Back to all categories
+      <footer className="pt-8 border-t border-[var(--border)] mt-12">
+        <Link href="/category" className="text-base font-bold text-muted-foreground hover:text-heading transition-colors flex items-center group">
+          <span className="mr-2 transition-transform group-hover:-translate-x-1">←</span> 카테고리 목록 보기
         </Link>
       </footer>
     </div>

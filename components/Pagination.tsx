@@ -1,66 +1,84 @@
-'use client';
-
-import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 interface PaginationProps {
-  totalItems: number;
-  itemsPerPage: number;
+  totalPages: number;
   currentPage: number;
+  basePath: string; // 예: "", "/category/tech"
 }
 
-export function Pagination({ totalItems, itemsPerPage, currentPage }: PaginationProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-
+export function Pagination({ totalPages, currentPage, basePath }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  const handlePageChange = (page: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('page', page.toString());
-    router.push(`?${params.toString()}`, { scroll: true });
+  const getPagePath = (page: number) => {
+    if (page === 1) return basePath === '' ? '/' : basePath;
+    return `${basePath}/page/${page}`;
   };
 
-  const buttonBaseClass = "px-4 py-2 text-sm font-bold rounded-xl transition-all border-2 border-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer text-neutral-400 dark:text-neutral-600";
+  const buttonBaseClass = "px-4 py-2 text-sm font-bold rounded-xl transition-all border-2 border-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white disabled:opacity-30 disabled:pointer-events-none text-neutral-400 dark:text-neutral-600";
+
+  // 페이지 번호 생성 로직 (Truncation)
+  const getPages = () => {
+    const pages: (number | string)[] = [];
+    const range = 1; // 현재 페이지 주변에 보여줄 페이지 수
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 || 
+        i === totalPages || 
+        (i >= currentPage - range && i <= currentPage + range)
+      ) {
+        pages.push(i);
+      } else if (pages[pages.length - 1] !== '...') {
+        pages.push('...');
+      }
+    }
+    return pages;
+  };
 
   return (
     <nav className="flex justify-center items-center space-x-2 mt-16">
-      <button
-        onClick={() => handlePageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className={buttonBaseClass}
+      <Link
+        href={getPagePath(currentPage - 1)}
+        className={`${buttonBaseClass} ${currentPage === 1 ? 'opacity-30 pointer-events-none' : ''}`}
+        aria-disabled={currentPage === 1}
       >
         이전
-      </button>
+      </Link>
       
       <div className="flex items-center space-x-1">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => handlePageChange(page)}
-            style={
-              currentPage === page 
-                ? { borderColor: 'var(--heading, black)', color: 'var(--heading, black)' } 
-                : {}
-            }
-            className={`w-10 h-10 text-sm font-black rounded-xl transition-all border-2 cursor-pointer ${
-              currentPage === page
-                ? 'z-10'
-                : 'border-transparent text-neutral-400 dark:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white'
-            }`}
-          >
-            {page}
-          </button>
+        {getPages().map((page, index) => (
+          typeof page === 'number' ? (
+            <Link
+              key={index}
+              href={getPagePath(page)}
+              style={
+                currentPage === page 
+                  ? { borderColor: 'var(--heading, black)', color: 'var(--heading, black)' } 
+                  : {}
+              }
+              className={`w-10 h-10 flex items-center justify-center text-sm font-black rounded-xl transition-all border-2 ${
+                currentPage === page
+                  ? 'z-10'
+                  : 'border-transparent text-neutral-400 dark:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:!text-black dark:hover:!text-white'
+              }`}
+            >
+              {page}
+            </Link>
+          ) : (
+            <span key={index} className="px-2 text-neutral-400 dark:text-neutral-600 font-bold">
+              {page}
+            </span>
+          )
         ))}
       </div>
 
-      <button
-        onClick={() => handlePageChange(currentPage + 1)}
-        disabled={totalPages === 0 || currentPage === totalPages}
-        className={buttonBaseClass}
+      <Link
+        href={getPagePath(currentPage + 1)}
+        className={`${buttonBaseClass} ${currentPage === totalPages ? 'opacity-30 pointer-events-none' : ''}`}
+        aria-disabled={currentPage === totalPages}
       >
         다음
-      </button>
+      </Link>
     </nav>
   );
 }

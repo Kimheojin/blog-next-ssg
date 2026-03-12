@@ -1,9 +1,5 @@
-'use client';
-
 import Link from "next/link";
-import { useSearchParams } from 'next/navigation';
 import { Pagination } from "./Pagination";
-import { Suspense } from 'react';
 
 interface Post {
   slug: string[];
@@ -13,18 +9,21 @@ interface Post {
 }
 
 interface PaginatedPostListProps {
-  posts: Post[];
-  itemsPerPage?: number;
+  currentItems: Post[];
+  totalItems: number;
+  itemsPerPage: number;
+  currentPage: number;
+  basePath: string;
 }
 
-function PostListContent({ posts, itemsPerPage = 7 }: PaginatedPostListProps) {
-  const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
-
-  // 현재 페이지에 해당하는 데이터 슬라이싱
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = posts.slice(indexOfFirstItem, indexOfLastItem);
+export function PaginatedPostList({ 
+  currentItems, 
+  totalItems, 
+  itemsPerPage, 
+  currentPage, 
+  basePath 
+}: PaginatedPostListProps) {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   return (
     <>
@@ -49,18 +48,10 @@ function PostListContent({ posts, itemsPerPage = 7 }: PaginatedPostListProps) {
       </div>
 
       <Pagination 
-        totalItems={posts.length} 
-        itemsPerPage={itemsPerPage} 
-        currentPage={currentPage} 
+        totalPages={totalPages}
+        currentPage={currentPage}
+        basePath={basePath}
       />
     </>
-  );
-}
-
-export function PaginatedPostList(props: PaginatedPostListProps) {
-  return (
-    <Suspense fallback={<div className="text-muted">Loading posts...</div>}>
-      <PostListContent {...props} />
-    </Suspense>
   );
 }

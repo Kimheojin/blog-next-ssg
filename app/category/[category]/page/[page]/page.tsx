@@ -15,8 +15,8 @@ export async function generateStaticParams() {
     const filteredPosts = posts.filter(post => post.category === category);
     const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
     
-    // 2페이지부터 끝까지 경로 생성 (1페이지는 "/category/[category]"에서 담당)
-    for (let i = 2; i <= totalPages; i++) {
+    // 최소 1페이지는 생성하도록 하여 빌드 에러 방지 (항상 존재하는 경로 확보)
+    for (let i = 1; i <= totalPages; i++) {
       paths.push({ 
         category, 
         page: i.toString() 
@@ -35,8 +35,8 @@ export default async function CategoryPaginationPage({ params }: { params: Promi
   const totalItems = filteredPosts.length;
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
-  // 1페이지인 경우 "/category/[category]"로 리다이렉트하거나 에러 처리 (선택)
-  if (currentPage === 1 || currentPage > totalPages || isNaN(currentPage)) {
+  // 유효하지 않은 페이지 번호 처리
+  if (isNaN(currentPage) || currentPage < 1 || currentPage > totalPages) {
     return notFound();
   }
 

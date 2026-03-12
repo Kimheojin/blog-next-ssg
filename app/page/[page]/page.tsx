@@ -8,9 +8,9 @@ export async function generateStaticParams() {
   const posts = getSortedPostsData();
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
 
-  // 2페이지부터 끝까지 경로 생성 (1페이지는 "/"에서 담당)
+  // 최소 1페이지는 생성하도록 하여 빌드 에러 방지 (항상 존재하는 경로 확보)
   const paths = [];
-  for (let i = 2; i <= totalPages; i++) {
+  for (let i = 1; i <= totalPages; i++) {
     paths.push({ page: i.toString() });
   }
   return paths;
@@ -23,8 +23,8 @@ export default async function HomePageWithPagination({ params }: { params: Promi
   const totalItems = allPostsData.length;
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
-  // 1페이지인 경우 "/"로 리다이렉트하거나 에러 처리 (선택)
-  if (currentPage === 1 || currentPage > totalPages || isNaN(currentPage)) {
+  // 유효하지 않은 페이지 번호 처리
+  if (isNaN(currentPage) || currentPage < 1 || currentPage > totalPages) {
     return notFound();
   }
 

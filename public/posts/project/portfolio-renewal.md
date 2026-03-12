@@ -2,6 +2,7 @@
 title: "포트폴리오 리뉴얼"
 date: "2026-02-24"
 category: "project"
+description: "포트폴리오 리뉴얼에 관한 포스트입니다."
 ---
 
 # 포트폴리오 리뉴얼

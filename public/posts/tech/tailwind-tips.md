@@ -2,6 +2,7 @@
 title: "Tailwind CSS 활용 꿀팁: 디자인 시스템부터 성능 최적화까지"
 date: "2026-02-05"
 category: "tech"
+description: "Tailwind CSS 활용 꿀팁: 디자인 시스템부터 성능 최적화까지에 관한 포스트입니다."
 ---
 
 # Tailwind CSS 활용법 가이드

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   
   return {
     title: `${post.title} | 허진 블로그`,
-    description: post.title,
+    description: post.description,
     alternates: {
       canonical: path,
     },

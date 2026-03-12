@@ -2,6 +2,7 @@
 title: "SSG 블로그 제작기 #1"
 date: "2026-02-22"
 category: "project"
+description: "SSG 블로그 제작기 #1에 관한 포스트입니다."
 ---
 
 # SSG 블로그 제작기 #1

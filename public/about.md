@@ -1,6 +1,7 @@
 ---
 title: "About Me"
 date: "2026-02-26"
+description: "About Me에 관한 포스트입니다."
 ---
 
 # 안녕하세요, 반갑습니다! 👋

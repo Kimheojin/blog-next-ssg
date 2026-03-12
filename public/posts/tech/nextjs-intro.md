@@ -2,6 +2,7 @@
 title: "Next.js 시작하기"
 date: "2026-02-01"
 category: "tech"
+description: "Next.js 시작하기에 관한 포스트입니다."
 ---
 
 # Next.js 시작하기

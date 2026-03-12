@@ -2,6 +2,7 @@
 title: "아침 운동의 기록"
 date: "2026-02-18"
 category: "daily"
+description: "아침 운동의 기록에 관한 포스트입니다."
 ---
 
 # 아침 운동의 기록

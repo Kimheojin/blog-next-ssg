@@ -7,6 +7,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import remarkBreaks from 'remark-breaks';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeRaw from 'rehype-raw';
@@ -115,6 +116,7 @@ export function getSortedPostsData(): PostData[] {
 async function processMarkdown(content: string): Promise<string> {
   const processedContent = await remark()
     .use(remarkGfm)
+    .use(remarkBreaks)
     .use(remarkMath)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)

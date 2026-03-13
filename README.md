@@ -130,3 +130,20 @@ npm run deploy
 - **Canonical URL**: 모든 페이지에 대표 URL (`rel="canonical"`) 자동 삽입.
 - **동적 메타데이터**: 포스트별 제목 및 설명이 검색 엔진에 맞게 자동 최적화되도록 구현.
 - **도메인 설정**: `https://heojin1109.github.io/` 기준 반영.
+
+
+
+
+---
+```
+---
+title: "Tailwind CSS 활용 꿀팁: 디자인 시스템부터 성능 최적화까지"
+date: "2026-02-05"
+category: "tech"
+description: "Tailwind CSS 활용 꿀팁: 디자인 시스템부터 성능 최적화까지에 관한 포스트입니다."
+---
+```
+
+- 기본 템플릿
+
+

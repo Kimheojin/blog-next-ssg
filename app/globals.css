@@ -145,6 +145,26 @@
     color: var(--foreground) !important;
   }
 
+  .prose img {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    cursor: zoom-in;
+  }
+
+  /* medium-zoom overlay 스타일 */
+  .medium-zoom-overlay {
+    z-index: 100;
+  }
+  .medium-zoom-image--opened {
+    z-index: 101;
+  }
+
+  /* 마크다운 파싱된 p 태그 내의 이미지도 중앙 정렬 */
+  .prose p:has(img) {
+    text-align: center !important;
+  }
+
   /* Rehype Pretty Code 스타일 */
   [data-rehype-pretty-code-figure] {
     @apply my-8 relative;
@@ -254,14 +274,26 @@
   color: #000000 !important;
 }
 
-/* 리스트 번호 및 텍스트를 모두 검정색으로 강제 */
+/* 리스트 번호, 텍스트, 링크를 모두 명확하게 강제 */
 :root:not(.dark) .prose p,
 :root:not(.dark) .prose li,
 :root:not(.dark) .prose table,
 :root:not(.dark) .prose table th,
 :root:not(.dark) .prose table td,
-:root:not(.dark) .prose strong {
-  color: #000000 !important;
+:root:not(.dark) .prose strong,
+:root:not(.dark) .prose a {
+  color: #000000 !important; /* 기본적으로 텍스트는 검정 */
+}
+
+/* 링크는 파란색으로 명시적 구분 */
+:root:not(.dark) .prose a {
+  color: #228be6 !important; 
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+
+:root:not(.dark) .prose a:hover {
+  color: #1c7ed6 !important;
 }
 
 /* 테이블 헤더(첫 줄) 가독성 추가 보정 */

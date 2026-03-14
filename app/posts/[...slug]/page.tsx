@@ -1,6 +1,7 @@
 import { getPostData, getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
 import { Metadata } from "next";
+import ZoomImageHandler from "@/components/ZoomImageHandler";
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
@@ -49,10 +50,10 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
           className="prose dark:prose-invert max-w-none 
             prose-headings:scroll-mt-32 
             prose-headings:font-bold
-            prose-a:no-underline prose-a:text-blue-500 hover:prose-a:underline
-            prose-img:rounded-2xl prose-img:shadow-xl"
+            prose-a:no-underline prose-a:text-blue-500 hover:prose-a:underline"
           dangerouslySetInnerHTML={{ __html: postData.contentHtml || '' }} 
         />
+        <ZoomImageHandler />
 
         <footer className="mt-24 pt-10 border-t border-[var(--border)] flex justify-between items-center">
           <Link href={`/category/${postData.category}`} className="text-base font-bold text-muted-foreground hover:text-heading transition-colors flex items-center group">

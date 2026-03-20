@@ -3,8 +3,7 @@
 - Next.js + TS 
 - 2026.03.22 버전
 - URL : https://heojin1109.github.io/
-
-
+- 배포 repo : https://github.com/HeoJin1109/HeoJin1109.github.io.git
 
 ## 배포 명령어
 

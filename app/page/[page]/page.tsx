@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 
 const ITEMS_PER_PAGE = 7;
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
@@ -21,6 +23,11 @@ export default async function HomePageWithPagination({ params }: { params: Promi
   const currentPage = parseInt(page);
   const allPostsData = getSortedPostsData();
   const totalItems = allPostsData.length;
+
+  if (totalItems === 0) {
+    return notFound();
+  }
+
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   // 유효하지 않은 페이지 번호 처리

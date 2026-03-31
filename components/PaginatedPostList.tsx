@@ -25,6 +25,14 @@ export function PaginatedPostList({
 }: PaginatedPostListProps) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  if (totalItems === 0) {
+    return (
+      <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] px-6 py-10 text-center">
+        <p className="text-lg font-bold text-heading">작성글이 없습니다.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="grid gap-6">

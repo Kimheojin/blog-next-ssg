@@ -1,6 +1,7 @@
 import { getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
 import { PaginatedPostList } from "@/components/PaginatedPostList";
+import { notFound } from "next/navigation";
 
 const ITEMS_PER_PAGE = 7;
 
@@ -16,6 +17,11 @@ export default async function CategoryDetailPage({ params }: { params: Promise<{
   const { category } = await params;
   const allPosts = getSortedPostsData();
   const filteredPosts = allPosts.filter(post => post.category === category);
+
+  if (filteredPosts.length === 0) {
+    notFound();
+  }
+
   const totalItems = filteredPosts.length;
   const currentPage = 1;
 

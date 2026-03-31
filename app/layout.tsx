@@ -33,7 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex flex-col min-h-screen">
-            <header className="w-full max-w-3xl mx-auto px-6 py-12 flex justify-between items-center">
+            <header className="w-full max-w-4xl mx-auto px-6 py-12 flex justify-between items-center">
               <Link href="/" className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity">
                 허진 블로그
               </Link>
@@ -44,11 +44,11 @@ export default function RootLayout({
               </nav>
             </header>
             
-            <main className="flex-grow w-full max-w-3xl mx-auto px-6 relative">
+            <main className="flex-grow w-full max-w-4xl mx-auto px-6 relative">
               {children}
             </main>
 
-            <footer className="w-full max-w-3xl mx-auto px-6 py-16 mt-20 border-t border-[var(--border)]">
+            <footer className="w-full max-w-4xl mx-auto px-6 py-16 mt-20 border-t border-[var(--border)]">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="text-sm text-muted-foreground">
                   © 2026 

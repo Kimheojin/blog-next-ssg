@@ -2,6 +2,7 @@ import { getPostData, getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
 import { Metadata } from "next";
 import ZoomImageHandler from "@/components/ZoomImageHandler";
+import { createBlogPostingJsonLd, serializeJsonLd } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
@@ -28,9 +29,14 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
   const { slug } = await params;
   const postData = await getPostData(slug);
   const hasHeadings = postData.headings && postData.headings.length > 0;
+  const jsonLd = createBlogPostingJsonLd(postData);
 
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+      />
       <article className="w-full min-w-0">
         <header className="mb-12">
           <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6">

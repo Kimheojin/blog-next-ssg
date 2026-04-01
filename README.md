@@ -73,6 +73,7 @@ description: "About Me에 관한 포스트"
   (app/category/[category]/page.tsx)
 - 수학 공식 렌더링: `remark-math` 및 `rehype-katex`를 통한 LaTeX 수식 지원
 - 검색 최적화(SEO): Metadata API를 활용한 동적 제목, 설명, 캐노니컬 URL 생성
+- 구조화 데이터(JSON-LD): 포스트 상세 페이지에 `BlogPosting` 스키마 삽입
 - 한글 슬러그 처리: `github-slugger`를 이용한 한글 제목의 URL 안전 변환 및 TOC 앵커 생성
 - 폰트: 나눔스퀘어 라운드 (Nanum Square Round) 웹폰트 + D2Coding + Typography
 - 레이아웃 요소:

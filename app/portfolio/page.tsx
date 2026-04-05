@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getMarkdownPageData } from "@/lib/markdown";
 import ContentWithTocLayout from "@/components/ContentWithTocLayout";
+import ZoomImageHandler from "@/components/ZoomImageHandler";
 
 export const metadata: Metadata = {
   title: "Portfolio | 허진 블로그",
@@ -29,6 +30,7 @@ export default async function PortfolioPage() {
           className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-32"
           dangerouslySetInnerHTML={{ __html: portfolioData.contentHtml || "" }}
         />
+        <ZoomImageHandler />
       </div>
     </ContentWithTocLayout>
   );

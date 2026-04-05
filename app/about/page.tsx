@@ -1,5 +1,6 @@
 import { getMarkdownPageData } from "@/lib/markdown";
 import ContentWithTocLayout from "@/components/ContentWithTocLayout";
+import ZoomImageHandler from "@/components/ZoomImageHandler";
 
 export default async function AboutPage() {
   const aboutData = await getMarkdownPageData("public/about.md");
@@ -16,6 +17,7 @@ export default async function AboutPage() {
           className="prose dark:prose-invert max-w-none prose-headings:scroll-mt-32"
           dangerouslySetInnerHTML={{ __html: aboutData.contentHtml || "" }}
         />
+        <ZoomImageHandler />
       </div>
     </ContentWithTocLayout>
   );

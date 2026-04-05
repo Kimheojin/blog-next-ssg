@@ -1,7 +1,7 @@
-import { getMarkdownFileData } from "@/lib/posts";
+import { getMarkdownPageData } from "@/lib/markdown";
 
 export default async function AboutPage() {
-  const aboutData = await getMarkdownFileData("public/about.md");
+  const aboutData = await getMarkdownPageData("public/about.md");
   const hasHeadings = aboutData.headings && aboutData.headings.length > 0;
 
   return (

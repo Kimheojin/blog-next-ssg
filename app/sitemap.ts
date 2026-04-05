@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 2. 카테고리 메인 및 개별 카테고리 페이지 (URL만 포함)
   const categoryRoutes = [
     { url: `${baseUrl}/category` },
+    { url: `${baseUrl}/about` },
     ...categories.map((category) => ({
       url: `${baseUrl}/category/${category}`,
     })),

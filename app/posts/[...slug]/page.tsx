@@ -2,7 +2,12 @@ import { getPostData, getSortedPostsData } from "@/lib/posts";
 import Link from "next/link";
 import { Metadata } from "next";
 import ZoomImageHandler from "@/components/ZoomImageHandler";
+import ContentWithTocLayout from "@/components/ContentWithTocLayout";
 import { createBlogPostingJsonLd, serializeJsonLd } from "@/lib/seo";
+
+type PostPageProps = {
+  params: Promise<{ slug: string[] }>;
+};
 
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
@@ -11,7 +16,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostData(slug);
   const path = `/posts/${slug.join('/')}`;
@@ -25,19 +30,18 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   };
 }
 
-export default async function PostPage({ params }: { params: { slug: string[] } }) {
+export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
   const postData = await getPostData(slug);
-  const hasHeadings = postData.headings && postData.headings.length > 0;
   const jsonLd = createBlogPostingJsonLd(postData);
 
   return (
-    <div>
+    <ContentWithTocLayout headings={postData.headings}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
-      <article className="w-full min-w-0">
+      <article>
         <header className="mb-12">
           <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-muted-foreground mb-6">
             <Link href="/" className="hover:text-heading transition-colors">Home</Link>
@@ -70,32 +74,6 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
           </Link>
         </footer>
       </article>
-
-      {/* TOC: 1280px(xl) 이상에서만 본문 우측에 표시 */}
-      {hasHeadings && (
-        <aside className="hidden xl:block absolute left-full top-0 h-full">
-          <div className="sticky top-24 ml-12 w-64">
-            <h2 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-6">
-              On this page
-            </h2>
-            <nav className="flex flex-col space-y-4">
-              {postData.headings?.map((heading) => (
-                <a
-                  key={heading.id}
-                  href={`#${heading.id}`}
-                  className={`text-[13px] transition-all duration-200 hover:translate-x-1 leading-snug hover:text-heading ${
-                    heading.level === 3 
-                      ? "pl-4 text-muted-foreground dark:text-muted-foreground/50 font-normal" 
-                      : "text-muted dark:text-muted/50 font-bold"
-                  }`}
-                >
-                  {heading.text}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </aside>
-      )}
-    </div>
+    </ContentWithTocLayout>
   );
 }

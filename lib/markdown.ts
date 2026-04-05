@@ -27,6 +27,9 @@ export interface MarkdownPageData {
   headings?: Heading[];
 }
 
+export const TOC_MIN_HEADING_LEVEL = 2;
+export const TOC_MAX_HEADING_LEVEL = 4;
+
 export function getExcerpt(content: string, maxLength = 160) {
   const plainText = content
     .replace(/[#*`_~]/g, "")
@@ -61,9 +64,13 @@ export function extractHeadings(content: string): Heading[] {
   const lines = contentWithoutCodeBlocks.split(/\r?\n/);
 
   lines.forEach((line) => {
-    const match = line.match(/^#{2,4} /);
+    const match = line.match(/^#{2,6} /);
     if (match) {
       const level = match[0].trim().length;
+      if (level < TOC_MIN_HEADING_LEVEL || level > TOC_MAX_HEADING_LEVEL) {
+        return;
+      }
+
       const text = line.replace(/^#+ /, "").replace(/#+$/, "").trim();
       const id = slugger.slug(text);
 

@@ -128,43 +128,11 @@
     --tw-prose-hr: var(--border);
     --tw-prose-quotes: var(--foreground);
     --tw-prose-code: var(--heading);
-    
-    max-width: none;
-    font-size: 1.05rem;
   }
 
   .prose strong {
     color: var(--strong) !important;
     font-weight: 700 !important;
-  }
-
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5 {
-    color: var(--heading) !important;
-  }
-
-  .prose h1 {
-    font-size: 2.35rem;
-    line-height: 1.15;
-  }
-
-  .prose h2 {
-    font-size: 1.7rem;
-    line-height: 1.2;
-  }
-
-  .prose h3 {
-    font-size: 1.45rem;
-    line-height: 1.25;
-  }
-
-  .prose h4 {
-    font-size: 1.2rem;
-    line-height: 1.35;
-  }
-
-  .prose h5 {
-    font-size: 1.05rem;
-    line-height: 1.35;
   }
   
   .prose p, .prose li {
@@ -293,6 +261,50 @@
     --tw-prose-th-borders: #3f3f46;
     --tw-prose-td-borders: #3f3f46;
     --tw-prose-links: #74a7ff;
+  }
+}
+
+@layer utilities {
+  .prose {
+    max-width: none;
+    font-size: 1.05rem;
+  }
+
+  .prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    color: var(--heading);
+  }
+
+  .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 2.35rem;
+    line-height: 1.15;
+  }
+
+  .prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 1.9em;
+    font-size: 1.95rem;
+    line-height: 1.2;
+  }
+
+  .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 1.6em;
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .prose :where(h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    margin-top: 1.35em;
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+
+  .prose :where(h5):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .prose :where(h6):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    font-size: 0.95rem;
+    line-height: 1.4;
   }
 }
 

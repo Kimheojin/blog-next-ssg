@@ -46,7 +46,7 @@ export default async function PostPage({ params }: { params: { slug: string[] } 
               {postData.category}
             </Link>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1]">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1] text-strong">
             {postData.title}
           </h1>
           <time className="text-sm text-muted-foreground font-mono italic">{postData.date}</time>

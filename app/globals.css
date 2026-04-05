@@ -8,6 +8,8 @@
     --background: #ffffff;
     --foreground: #1a1a1a; 
     --heading: #000000;    
+    --strong: #000000;
+    --card-border-hover: #000000;
     
     --card: #f8f9fa;       
     --card-hover: #f1f3f5;
@@ -23,15 +25,17 @@
   /* 다크 모드 (.dark 클래스 기준) */
   :root.dark {
     --background: #1C1C1E;
-    --foreground: #ced4da; 
-    --heading: #ffffff;    
+    --foreground: #c2c8ce; 
+    --heading: #eef2f5;
+    --strong: #e2e8ee;
+    --card-border-hover: #8f9aa3;
     
     --card: #252529;       
     --card-hover: #2c2c31;
     --border: #3f3f46;     
     
-    --muted: #adb5bd;      
-    --muted-foreground: #868e96; 
+    --muted: #9fa8b2;      
+    --muted-foreground: #7f8892; 
     
     --selection: #1c7ed6;
     --primary: #3b82f6;
@@ -82,6 +86,7 @@
   .text-muted { color: var(--muted); }
   .text-muted-foreground { color: var(--muted-foreground); }
   .text-heading { color: var(--heading); }
+  .text-strong { color: var(--strong); }
   
   .card-base {
     background-color: var(--card);
@@ -90,7 +95,7 @@
   }
   .card-base:hover {
     background-color: var(--card-hover);
-    border-color: var(--heading);
+    border-color: var(--card-border-hover);
     transform: translateY(-2px);
   }
 
@@ -119,7 +124,7 @@
     --tw-prose-body: var(--foreground);
     --tw-prose-headings: var(--heading);
     --tw-prose-links: var(--primary);
-    --tw-prose-bold: #000000;
+    --tw-prose-bold: var(--strong);
     --tw-prose-hr: var(--border);
     --tw-prose-quotes: var(--foreground);
     --tw-prose-code: var(--heading);
@@ -129,16 +134,37 @@
   }
 
   .prose strong {
-    color: #000000 !important;
+    color: var(--strong) !important;
     font-weight: 700 !important;
   }
 
-  :root.dark .prose strong {
-    color: #ffffff !important;
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5 {
+    color: var(--heading) !important;
   }
 
-  .prose h1, .prose h2, .prose h3, .prose h4 {
-    color: var(--heading) !important;
+  .prose h1 {
+    font-size: 2.35rem;
+    line-height: 1.15;
+  }
+
+  .prose h2 {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+
+  .prose h3 {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+
+  .prose h4 {
+    font-size: 1.2rem;
+    line-height: 1.35;
+  }
+
+  .prose h5 {
+    font-size: 1.05rem;
+    line-height: 1.35;
   }
   
   .prose p, .prose li {
@@ -266,6 +292,7 @@
     --tw-prose-hr: #343a40;
     --tw-prose-th-borders: #3f3f46;
     --tw-prose-td-borders: #3f3f46;
+    --tw-prose-links: #74a7ff;
   }
 }
 
